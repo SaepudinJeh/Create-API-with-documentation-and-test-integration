@@ -45,7 +45,8 @@ module.exports = async (req, res, next) => {
     const insertUserQuery = `INSERT INTO users(username, password) VALUES(?, ?)`;
 
     // hash password
-    const hashPassword = bcrypt.hash(password, 10);
+    const hashPassword = bcrypt.hashSync(password, 10);
+    console.log("hash pass", hashPassword);
 
     db.run(insertUserQuery, [username, hashPassword], (err) => {
       if (err) {
@@ -57,5 +58,11 @@ module.exports = async (req, res, next) => {
         .status(201)
         .json({ statusCode: 201, message: "User created successfully" });
     });
+  });
+
+  db.close((err) => {
+    if (err) {
+      console.error(err.message);
+    }
   });
 };
