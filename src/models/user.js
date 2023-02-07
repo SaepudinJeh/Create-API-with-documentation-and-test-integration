@@ -19,7 +19,6 @@ const userSchema = new mongoose.Schema(
 
 userSchema.pre("save", function (next) {
   const user = this;
-  console.log("dataaaa", user);
 
   if (!user.isModified("password")) {
     return next();

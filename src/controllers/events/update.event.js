@@ -6,11 +6,6 @@ module.exports = async (req, res, next) => {
   try {
     const getParamsId = req.params.id;
 
-    console.log("update", {
-      getParamsId,
-      ...req?.body,
-    });
-
     const { _id, ...data } = await updateEventValidation.validateAsync({
       _id: getParamsId,
       ...req?.body,

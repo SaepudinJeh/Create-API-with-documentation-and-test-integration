@@ -17,9 +17,6 @@ module.exports = async (req, res, next) => {
       );
       const end = moment(currentDate + " " + event.endTime, "YYYY-MM-DD HH:mm");
 
-      console.log(start, end);
-      console.log(currentDate + " " + event.endTime);
-
       let status;
       if (now.isBefore(start)) {
         status = "Belum Dilaksanakan";

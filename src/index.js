@@ -9,6 +9,8 @@ const { middlewares } = require("./middlewares");
 
 const app = express();
 
+const PORT = process.env.PORT || 3000;
+
 middlewares(app);
 routes(app);
 
@@ -32,10 +34,11 @@ mongoose.connect(process.env.MONGO_URI, {
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error: "));
-db.once("open", () => {
-  console.log("Mongo connected successfully");
-});
 
-app.listen(process.env.PORT, () => {
-  console.info(`Server running on port ${process.env.PORT}`);
-});
+if (process.env.NODE_ENV !== "test") {
+  app.listen(PORT, () => {
+    console.info(`Server running on port ${PORT}`);
+  });
+}
+
+module.exports = app;

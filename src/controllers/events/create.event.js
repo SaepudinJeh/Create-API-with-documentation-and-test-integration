@@ -12,7 +12,7 @@ module.exports = async (req, res, next) => {
 
     return res.status(201).json({
       statusCode: 201,
-      message: "Created User Successfully",
+      message: "Created Event Successfully",
     });
   } catch (error) {
     console.log("error login", error?.message);

@@ -5,7 +5,10 @@ const jwtValidate = require("./jwtValidate");
 
 module.exports = {
   middlewares: (app) => {
-    app.use(morgan("dev"));
+    if (process.env.NODE_ENV !== "test") {
+      app.use(morgan("dev"));
+    }
+
     app.use(cors());
     app.use(express.urlencoded({ extended: false }));
     app.use(express.json());
